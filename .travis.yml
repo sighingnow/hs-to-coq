@@ -30,13 +30,13 @@ before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+# Only build the `hs-to-coq` project
+- cd hs-to-coq
 
 install:
 # Build dependencies
-- cd hs-to-coq
 - stack --no-terminal --install-ghc test --only-dependencies
 
 script:
 # Build the package, its tests, and its docs and run the tests
-- cd hs-to-coq
 - stack --no-terminal test --haddock --no-haddock-deps
