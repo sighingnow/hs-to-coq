@@ -34,6 +34,8 @@ before_install:
 # Get GHC
 - '[[ -d ~/ghc ]] || { travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz ; mv ghc-ghc-8.0.2-release ~/ghc; }'
 # Only build the `hs-to-coq` project
+- 'ls ~'
+- 'ls ~/ghc'
 - cd hs-to-coq
 
 install:
