@@ -32,7 +32,7 @@ before_install:
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 # Get GHC
-- travis_retry '[[ -d ghc ]] || { curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz ; mv ghc-ghc-8.0.2-release ghc; }'
+- 'travis_retry [[ -d ghc ]] || { curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz ; mv ghc-ghc-8.0.2-release ghc; }'
 # Only build the `hs-to-coq` project
 - cd hs-to-coq
 
