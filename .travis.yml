@@ -32,8 +32,8 @@ before_install:
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 # Get GHC
-- [[ -d ghc ]] || git clone git://git.haskell.org/ghc.git -b ghc-8.0.2-release
-- cd ghc && git pull
+- '[[ -d ghc ]] || git clone git://git.haskell.org/ghc.git -b ghc-8.0.2-release'
+- '(cd ghc && git pull)'
 # Only build the `hs-to-coq` project
 - cd hs-to-coq
 
