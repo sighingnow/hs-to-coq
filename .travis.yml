@@ -18,6 +18,7 @@ language: generic
 cache:
   directories:
   - $HOME/.stack
+  - $HOME/ghc
 
 # Ensure necessary system libraries are present
 addons:
@@ -30,6 +31,9 @@ before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+# Get GHC
+- [[ -d ghc ]] || git clone git://git.haskell.org/ghc.git -b ghc-8.0.2-release
+- cd ghc && git pull
 # Only build the `hs-to-coq` project
 - cd hs-to-coq
 
@@ -40,3 +44,5 @@ install:
 script:
 # Build the package, its tests, and its docs and run the tests
 - stack --no-terminal test --haddock --no-haddock-deps
+# Can we convert all the modules?
+- stack exec hs-to-coq -- -I ~/ghc/compiler -I ~/ghc/compiler/stage2 -I ~/ghc/compiler/stage2/build -o test.v -p preamble.v -r renamings.txt -e edits.txt -m modules.txt -d ~/ghc
