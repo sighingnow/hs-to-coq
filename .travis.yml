@@ -35,6 +35,8 @@ before_install:
 - pwd
 - '[[ -d ghc ]] || { travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz ; mv ghc-ghc-8.0.2-release ghc; }'
 - ls
+- sleep 120
+- ls
 # Only build the `hs-to-coq` project
 - cd hs-to-coq
 
