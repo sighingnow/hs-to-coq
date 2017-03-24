@@ -31,9 +31,10 @@ before_install:
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
+# Skip this for now, I can't seem to get this to work with the caching
 # Get GHC
-- mkdir -p ~/ghc
-- '[[ -n $(find ~/ghc -prune -empty) ]] && (cd ~/ghc; travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz --strip-components 1)'
+# - mkdir -p ~/ghc
+# - '[[ -n $(find ~/ghc -prune -empty) ]] && (cd ~/ghc; travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz --strip-components 1)'
 # Only build the `hs-to-coq` project
 - cd hs-to-coq
 
