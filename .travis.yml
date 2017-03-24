@@ -35,8 +35,6 @@ before_install:
 - mkdir -p ~/ghc
 - '[[ -n $(find ~/ghc -prune -empty) ]] && (cd ~/ghc; travis_retry curl https://codeload.github.com/ghc/ghc/tar.gz/ghc-8.0.2-release | tar xz --strip-components 1)'
 # Only build the `hs-to-coq` project
-- 'ls ~'
-- 'ls ~/ghc'
 - cd hs-to-coq
 
 install:
@@ -46,5 +44,6 @@ install:
 script:
 # Build the package, its tests, and its docs and run the tests
 - stack --no-terminal test --haddock --no-haddock-deps
+# Getting this test right requires building GHC on the server
 # Can we convert all the modules?
-- stack exec hs-to-coq -- -I ~/ghc/compiler -I ~/ghc/compiler/stage2 -I ~/ghc/compiler/stage2/build -o test.v -p preamble.v -r renamings.txt -e edits.txt -m modules.txt -d ~/ghc
+# - stack exec hs-to-coq -- -I ~/ghc/compiler -I ~/ghc/compiler/stage2 -I ~/ghc/compiler/stage2/build -o test.v -p preamble.v -r renamings.txt -e edits.txt -m modules.txt -d ~/ghc
